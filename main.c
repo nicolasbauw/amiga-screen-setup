@@ -31,10 +31,11 @@ void waitLMB() {
 }
 
 void startup() {
+    // Updating copperlist with bitplan address
     ULONG bpl1addr;
     bpl1addr = (ULONG)bitplan1;
-    clist[1] = (UWORD)(bpl1addr>>16);
-    clist[3] = (UWORD)bpl1addr;
+    clist[1] = (UWORD)(bpl1addr>>16);       // BPL1PTH
+    clist[3] = (UWORD)bpl1addr;             // BPL1PTL
 
     #ifdef DEBUG
     printf("Bitplan address : %8x\n", bpl1addr);

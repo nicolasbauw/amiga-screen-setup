@@ -76,7 +76,7 @@ void restore() {
 
 int main() {
     // Allocating memory (chipram) for bitplans
-    if ((bitplan1 = AllocMem(0x2800, MEMF_CHIP|MEMF_CLEAR)) == NULL) return(1);
+    if ((bitplan1 = AllocMem(0x2800, MEMF_CHIP|MEMF_CLEAR)) == NULL) return 1;
     startup();
     waitLMB();
     restore();

@@ -1,8 +1,6 @@
 #include <proto/exec.h>
 #include <proto/graphics.h>
 #include <graphics/gfxbase.h>
-#include <graphics/view.h>
-#include <graphics/gfxmacros.h>
 #include <hardware/custom.h>
 #include <hardware/dmabits.h>
 

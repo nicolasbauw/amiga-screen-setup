@@ -1,13 +1,10 @@
 #include <proto/exec.h>
-//#include <proto/dos.h>
 #include <proto/graphics.h>
 #include <graphics/gfxbase.h>
 #include <graphics/view.h>
-//#include <exec/execbase.h>
 #include <graphics/gfxmacros.h>
 #include <hardware/custom.h>
-//#include <hardware/dmabits.h>
-//#include <hardware/intbits.h>
+#include <hardware/dmabits.h>
 
 #define DEBUG
 #ifdef DEBUG
@@ -18,10 +15,8 @@ volatile UBYTE *ciaa = (volatile UBYTE *) 0xbfe001;
 UBYTE *bitplan1;            // pointer to bitplan data
 UWORD SystemDMA;            // backup of initial DMA
 
-struct Custom custom;
-struct ExecBase *ExecBase;
-//struct DosLibrary *DOSBase;
-struct GfxBase *GfxBase;
+extern struct Custom custom;
+extern struct GfxBase *GfxBase;
 struct copinit *oldcop;
 
 // Basic copperlist : just resets bitplan pointers at each frame
@@ -57,7 +52,6 @@ void startup() {
 	CloseLibrary((struct Library *)GfxBase);
 
     SystemDMA=custom.dmaconr|0x8000;    // Saving initial DMA with the SET/CLR flag set
-    //LoadView(0);                      // clear display, reset hardware registers
     WaitTOF();                          // Waiting for both copperlists to finish
     WaitTOF();
 

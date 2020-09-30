@@ -31,8 +31,6 @@ void waitLMB() {
 }
 
 void startup() {
-    // Allocating memory (chipram) for bitplans
-    bitplan1 = AllocMem(0x2800, MEMF_CHIP|MEMF_CLEAR);
     ULONG bpl1addr;
     bpl1addr = (ULONG)bitplan1;
     clist[1] = (UWORD)(bpl1addr>>16);
@@ -70,12 +68,14 @@ void startup() {
 }
 
 void restore() { 
-	FreeMem(bitplan1, 0x2800);                  // Frees reserved memory
+	if (bitplan1) FreeMem(bitplan1, 0x2800);    // Frees reserved memory
     custom.dmacon = SystemDMA;                  // Restores initial DMA
     custom.cop1lc = (ULONG)oldcop;              // Restores initial copperlist
 }
 
 int main() {
+    // Allocating memory (chipram) for bitplans
+    if ((bitplan1 = AllocMem(0x2800, MEMF_CHIP|MEMF_CLEAR)) == NULL) return(1);
     startup();
     waitLMB();
     restore();

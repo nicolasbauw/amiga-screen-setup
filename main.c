@@ -59,23 +59,23 @@ void startup() {
     printf("copperlist address : %8x\n", (ULONG)clist);
     #endif
 
-    custom.dmacon = 0x7FFF;             // Clear all DMA channels
-	custom.bplcon0 = 0x1000;            // 1 bitplan in low resolution
+    custom.dmacon = 0x7FFF;                                                             // Clear all DMA channels
+	custom.bplcon0 = 0x1000;                                                            // 1 bitplan in low resolution
 	custom.bplcon1 = 0x0000;
 	custom.ddfstrt = 0X0038;
 	custom.ddfstop = 0X00D0;
 	custom.diwstrt = 0x2C81;
 	custom.diwstop = 0x2CC1;
 	custom.bpl1mod = 0x0000;
-	custom.cop1lc = (ULONG)clist;       // copperlist address
-	custom.dmacon = 0x8380;             // playfield and copper DMA enabled
-    custom.copjmp1 = 0x0000;            // copper start
+	custom.cop1lc = (ULONG)clist;                                                       // copperlist address
+	custom.dmacon = DMAF_SETCLR | DMAF_MASTER | DMAF_COPPER | DMAF_RASTER;              // playfield and copper DMA enabled
+    custom.copjmp1 = 0x0000;                                                            // copper start
 }
 
 void restore() { 
 	FreeMem(bitplan1, 0x2800);
-    custom.dmacon = SystemDMA;          // Restores initial DMA
-    custom.cop1lc = (ULONG)oldcop;             // Restores initial copperlist
+    custom.dmacon = SystemDMA;                  // Restores initial DMA
+    custom.cop1lc = (ULONG)oldcop;              // Restores initial copperlist
 }
 
 int main() {

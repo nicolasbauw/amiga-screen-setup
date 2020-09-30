@@ -6,7 +6,7 @@
 #include <hardware/custom.h>
 #include <hardware/dmabits.h>
 
-#define DEBUG
+//#define DEBUG
 #ifdef DEBUG
 #include <stdio.h>
 #endif
@@ -28,7 +28,7 @@ UWORD __chip clist[] = {
     0xFFFF, 0xFFFE
 };
 
-void waitLMB(void) {
+void waitLMB() {
     while ((*ciaa & 64) != 0);
 }
 
@@ -72,7 +72,7 @@ void startup() {
 }
 
 void restore() { 
-	FreeMem(bitplan1, 0x2800);
+	FreeMem(bitplan1, 0x2800);                  // Frees reserved memory
     custom.dmacon = SystemDMA;                  // Restores initial DMA
     custom.cop1lc = (ULONG)oldcop;              // Restores initial copperlist
 }

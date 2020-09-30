@@ -28,9 +28,8 @@ UWORD __chip clist[] = {
     0xFFFF, 0xFFFE
 };
 
-void mouse_left(void)
-{
-    while ((*ciaa & 64) != 0) ;
+void waitLMB(void) {
+    while ((*ciaa & 64) != 0);
 }
 
 void startup() {
@@ -80,7 +79,7 @@ void restore() {
 
 int main() {
     startup();
-    mouse_left();
+    waitLMB();
     restore();
     return 0;
 }

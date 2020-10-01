@@ -4,7 +4,7 @@ In this repo, two directories to showcase two different ways to open a basic scr
 
 **In the hardware directory**, there is a very old (assembly) source I wrote when I was learning Amiga hardware, that was my first working setup / system restore code, and copperlist setup.
 
-In 2020 I added the C version. It is not *too* fat : executable takes 1868 bytes (368 bytes for the assembly version).
+In 2020 I added the C version. It is not *too* fat : executable takes 824 bytes (368 bytes for the assembly version).
 
 Tested on 68000/ECS (UAE and REAL machine) and 68040/AGA (UAE).
 

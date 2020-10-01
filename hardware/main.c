@@ -45,7 +45,6 @@ void startup() {
     // Saving initial copperlist
 	GfxBase = (struct GfxBase*)OpenLibrary("graphics.library", 0);
 	oldcop = GfxBase->copinit;
-	CloseLibrary((struct Library *)GfxBase);
 
     SystemDMA=custom.dmaconr|0x8000;    // Saving initial DMA with the SET/CLR flag set
     WaitTOF();                          // Waiting for both copperlists to finish
@@ -72,6 +71,7 @@ void restore() {
 	if (bitplan1) FreeMem(bitplan1, 0x2800);    // Frees reserved memory
     custom.dmacon = SystemDMA;                  // Restores initial DMA
     custom.cop1lc = (ULONG)oldcop;              // Restores initial copperlist
+    CloseLibrary((struct Library *)GfxBase);
 }
 
 int main() {
